@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
@@ -19,17 +20,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        cell.selectionStyle = .none
         let movie = movies[indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
+        let moviePoster = movie["poster_path"] as! String
+        let movieurl = URL(string: "https://image.tmdb.org/t/p/w500" + moviePoster)
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
+        cell.imageLabel.af_setImage(withURL: movieurl!)
         
         
         return cell
     }
-
-   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -43,36 +48,45 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             if let error = error {
                 print(error.localizedDescription)
             } else if let data = data {
-               let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 
                 
                 // TODO: Get the array of movies
                 // TODO: Store the movies in a property to use elsewhere
                 // TODO: Reload your table view data
                 let movies = dataDictionary["results"] as! [[String: Any]]
-                    self.movies = movies
+                self.movies = movies
                 self.tableView.reloadData()
             }
         }
         task.resume()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
+    
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let destVC = segue.destination as! DetailViewController
+        let source = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: source){
+        let movie = movies[indexPath.row]
+        destVC.movie = movie
+        }
+       
+        
+        
     }
-    */
-
+    
+    
 }
