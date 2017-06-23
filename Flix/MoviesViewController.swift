@@ -13,6 +13,25 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var movies: [[String: Any]] = []
+    var refreshControl: UIRefreshControl!
+    
+
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        networkRequest()
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        
+        // Do any additional setup after loading the view.
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
@@ -34,12 +53,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.dataSource = self
-        tableView.delegate = self
-        
+    func networkRequest(){
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=5f89533e24a2ff0828389c5e1cb6f8e8")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -57,13 +71,20 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 let movies = dataDictionary["results"] as! [[String: Any]]
                 self.movies = movies
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+                self.loadingIndicator.stopAnimating()
             }
         }
         task.resume()
-        
-        // Do any additional setup after loading the view.
+
     }
     
+    func didPullToRefresh(_ refreshControl: UIRefreshControl){
+        self.loadingIndicator.startAnimating()
+        networkRequest()
+    }
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

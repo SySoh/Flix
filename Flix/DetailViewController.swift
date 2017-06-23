@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
         if let movie = movie{
         titleLabel.text = movie["title"] as? String
         releaseDateLabel.text = movie["release_date"] as? String
-        voteAveLabel.text = movie["vote_average"] as? String
+        voteAveLabel.text = "\(movie["vote_average"]!)" + "/10"
         overviewLabel.text = movie["overview"] as? String
         let posterString = (movie["poster_path"] as! String)
             let posterpath = URL(string: "https://image.tmdb.org/t/p/w500" + posterString)
