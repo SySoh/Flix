@@ -21,6 +21,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadingIndicator.startAnimating()
         tableView.dataSource = self
         tableView.delegate = self
         networkRequest()
@@ -80,7 +81,6 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func didPullToRefresh(_ refreshControl: UIRefreshControl){
-        self.loadingIndicator.startAnimating()
         networkRequest()
     }
     
