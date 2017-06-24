@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E58A0F61EFDCF340075F57D /* PosterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E58A0F51EFDCF340075F57D /* PosterCell.swift */; };
+		2E58A0F81EFDD0030075F57D /* SuperheroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E58A0F71EFDD0030075F57D /* SuperheroViewController.swift */; };
 		2E64FA5F1EFB16C80066A54C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E64FA5E1EFB16C80066A54C /* AppDelegate.swift */; };
 		2E64FA641EFB16C80066A54C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E64FA621EFB16C80066A54C /* Main.storyboard */; };
 		2E64FA661EFB16C80066A54C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E64FA651EFB16C80066A54C /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E58A0F51EFDCF340075F57D /* PosterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PosterCell.swift; sourceTree = "<group>"; };
+		2E58A0F71EFDD0030075F57D /* SuperheroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuperheroViewController.swift; sourceTree = "<group>"; };
 		2E64FA5B1EFB16C80066A54C /* Flix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E64FA5E1EFB16C80066A54C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E64FA631EFB16C80066A54C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -127,8 +131,10 @@
 				2E64FA921EFB342C0066A54C /* MovieCell.swift */,
 				2E64FA8C1EFB189A0066A54C /* MoviesViewController.swift */,
 				2E64FA621EFB16C80066A54C /* Main.storyboard */,
+				2E58A0F71EFDD0030075F57D /* SuperheroViewController.swift */,
 				2E64FA651EFB16C80066A54C /* Assets.xcassets */,
 				2E64FA671EFB16C80066A54C /* LaunchScreen.storyboard */,
+				2E58A0F51EFDCF340075F57D /* PosterCell.swift */,
 				2E64FA6A1EFB16C80066A54C /* Info.plist */,
 				2EF150EC1EFC36F80012A73D /* DetailViewController.swift */,
 			);
@@ -427,6 +433,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E64FA5F1EFB16C80066A54C /* AppDelegate.swift in Sources */,
+				2E58A0F61EFDCF340075F57D /* PosterCell.swift in Sources */,
+				2E58A0F81EFDD0030075F57D /* SuperheroViewController.swift in Sources */,
 				2E64FA8D1EFB189A0066A54C /* MoviesViewController.swift in Sources */,
 				2E64FA931EFB342C0066A54C /* MovieCell.swift in Sources */,
 				2EF150ED1EFC36F80012A73D /* DetailViewController.swift in Sources */,

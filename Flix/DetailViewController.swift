@@ -23,6 +23,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = UIColor.darkGray
+        tabBarController?.tabBar.barTintColor = UIColor.darkGray
         navigationController?.navigationItem.title = "Detail"
         
         if let movie = movie{

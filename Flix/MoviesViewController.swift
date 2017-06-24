@@ -17,6 +17,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
 
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: index, animated :true)
+        }
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        tabBarController?.tabBar.barTintColor = UIColor.white
+    }
     
 
     override func viewDidLoad() {
@@ -40,7 +49,9 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
-        cell.selectionStyle = .none
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.darkGray
+        cell.selectedBackgroundView = bgColorView
         let movie = movies[indexPath.row]
         let title = movie["title"] as! String
         let overview = movie["overview"] as! String
