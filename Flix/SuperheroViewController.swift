@@ -14,10 +14,12 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet var collectionView: UICollectionView!
     
+    var refreshControl: UIRefreshControl!
+    
     var movies: [[String: Any]] = []
     
     func networkRequest(){
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=5f89533e24a2ff0828389c5e1cb6f8e8")!
+        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=5f89533e24a2ff0828389c5e1cb6f8e8")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
@@ -34,7 +36,7 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
                 let movies = dataDictionary["results"] as! [[String: Any]]
                 self.movies = movies
                 self.collectionView.reloadData()
-                //self.refreshControl.endRefreshing()
+                self.refreshControl.endRefreshing()
                 //self.loadingIndicator.stopAnimating()
             }
         }
@@ -67,6 +69,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh(_:)), for: .valueChanged)
+        collectionView.insertSubview(refreshControl, at: 0)
+
         networkRequest()
 
         // Do any additional setup after loading the view.
@@ -77,6 +83,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func didPullToRefresh(_ refreshControl: UIRefreshControl){
+        networkRequest()
+    }
 
     
     // MARK: - Navigation

@@ -259,11 +259,11 @@
             </objects>
             <point key="canvasLocation" x="254.5" y="1067.5"/>
         </scene>
-        <!--Superheroes-->
+        <!--Popular-->
         <scene sceneID="gFd-V6-BpH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dKQ-zv-qzK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Superheroes" image="superhero_tabbar_item" id="sle-sE-wht"/>
+                    <tabBarItem key="tabBarItem" title="Popular" image="superhero_tabbar_item" id="sle-sE-wht"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QRa-yr-R6x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
